@@ -1,0 +1,17 @@
+{
+  "verified": true,
+  "tables": 5,
+  "columns": 18,
+  "foreignKeys": 5,
+  "identifyingRelationships": 2,
+  "nonIdentifyingRelationships": 3,
+  "svgDimensions": {
+    "width": 1566,
+    "height": 1266
+  },
+  "pngDimensions": {
+    "width": 3132,
+    "height": 2532
+  },
+  "databaseChanged": false
+}

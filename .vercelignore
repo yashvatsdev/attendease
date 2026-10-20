@@ -1,0 +1,13 @@
+.env*
+.git
+.vercel
+.next
+node_modules
+docs
+database
+scripts
+tests
+test-results
+*.pem
+*.tsbuildinfo
+.secrets

@@ -1,0 +1,351 @@
+{
+  "database": "attendease",
+  "verifiedAt": "2026-10-20T18:51:09.737Z",
+  "schemaFileSha256": "e51c3664589afac96f5bbc9df86877690938e8995672ac94f182c920274304e7",
+  "tables": [
+    {
+      "name": "students",
+      "engine": "InnoDB",
+      "columns": [
+        {
+          "COLUMN_NAME": "id",
+          "COLUMN_TYPE": "int",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "auto_increment",
+          "ORDINAL_POSITION": 1
+        },
+        {
+          "COLUMN_NAME": "roll_no",
+          "COLUMN_TYPE": "varchar(20)",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 2
+        },
+        {
+          "COLUMN_NAME": "name",
+          "COLUMN_TYPE": "varchar(100)",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 3
+        },
+        {
+          "COLUMN_NAME": "email",
+          "COLUMN_TYPE": "varchar(150)",
+          "IS_NULLABLE": "YES",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 4
+        },
+        {
+          "COLUMN_NAME": "created_at",
+          "COLUMN_TYPE": "timestamp",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": "CURRENT_TIMESTAMP",
+          "EXTRA": "DEFAULT_GENERATED",
+          "ORDINAL_POSITION": 5
+        }
+      ],
+      "indexes": [
+        {
+          "INDEX_NAME": "email",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "email",
+          "SEQ_IN_INDEX": 1
+        },
+        {
+          "INDEX_NAME": "PRIMARY",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "id",
+          "SEQ_IN_INDEX": 1
+        },
+        {
+          "INDEX_NAME": "roll_no",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "roll_no",
+          "SEQ_IN_INDEX": 1
+        }
+      ],
+      "foreignKeys": [],
+      "checks": []
+    },
+    {
+      "name": "subjects",
+      "engine": "InnoDB",
+      "columns": [
+        {
+          "COLUMN_NAME": "id",
+          "COLUMN_TYPE": "int",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "auto_increment",
+          "ORDINAL_POSITION": 1
+        },
+        {
+          "COLUMN_NAME": "code",
+          "COLUMN_TYPE": "varchar(20)",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 2
+        },
+        {
+          "COLUMN_NAME": "name",
+          "COLUMN_TYPE": "varchar(100)",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 3
+        }
+      ],
+      "indexes": [
+        {
+          "INDEX_NAME": "code",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "code",
+          "SEQ_IN_INDEX": 1
+        },
+        {
+          "INDEX_NAME": "PRIMARY",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "id",
+          "SEQ_IN_INDEX": 1
+        }
+      ],
+      "foreignKeys": [],
+      "checks": []
+    },
+    {
+      "name": "enrollments",
+      "engine": "InnoDB",
+      "columns": [
+        {
+          "COLUMN_NAME": "student_id",
+          "COLUMN_TYPE": "int",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 1
+        },
+        {
+          "COLUMN_NAME": "subject_id",
+          "COLUMN_TYPE": "int",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 2
+        }
+      ],
+      "indexes": [
+        {
+          "INDEX_NAME": "idx_enrollment_subject",
+          "NON_UNIQUE": 1,
+          "COLUMN_NAME": "subject_id",
+          "SEQ_IN_INDEX": 1
+        },
+        {
+          "INDEX_NAME": "PRIMARY",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "student_id",
+          "SEQ_IN_INDEX": 1
+        },
+        {
+          "INDEX_NAME": "PRIMARY",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "subject_id",
+          "SEQ_IN_INDEX": 2
+        }
+      ],
+      "foreignKeys": [
+        {
+          "CONSTRAINT_NAME": "enrollments_ibfk_1",
+          "COLUMN_NAME": "student_id",
+          "REFERENCED_TABLE_NAME": "students",
+          "REFERENCED_COLUMN_NAME": "id",
+          "DELETE_RULE": "CASCADE",
+          "UPDATE_RULE": "NO ACTION"
+        },
+        {
+          "CONSTRAINT_NAME": "enrollments_ibfk_2",
+          "COLUMN_NAME": "subject_id",
+          "REFERENCED_TABLE_NAME": "subjects",
+          "REFERENCED_COLUMN_NAME": "id",
+          "DELETE_RULE": "CASCADE",
+          "UPDATE_RULE": "NO ACTION"
+        }
+      ],
+      "checks": []
+    },
+    {
+      "name": "class_sessions",
+      "engine": "InnoDB",
+      "columns": [
+        {
+          "COLUMN_NAME": "id",
+          "COLUMN_TYPE": "int",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "auto_increment",
+          "ORDINAL_POSITION": 1
+        },
+        {
+          "COLUMN_NAME": "subject_id",
+          "COLUMN_TYPE": "int",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 2
+        },
+        {
+          "COLUMN_NAME": "session_date",
+          "COLUMN_TYPE": "date",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 3
+        },
+        {
+          "COLUMN_NAME": "period_no",
+          "COLUMN_TYPE": "int",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 4
+        }
+      ],
+      "indexes": [
+        {
+          "INDEX_NAME": "idx_session_date",
+          "NON_UNIQUE": 1,
+          "COLUMN_NAME": "session_date",
+          "SEQ_IN_INDEX": 1
+        },
+        {
+          "INDEX_NAME": "PRIMARY",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "id",
+          "SEQ_IN_INDEX": 1
+        },
+        {
+          "INDEX_NAME": "uq_session",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "subject_id",
+          "SEQ_IN_INDEX": 1
+        },
+        {
+          "INDEX_NAME": "uq_session",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "session_date",
+          "SEQ_IN_INDEX": 2
+        },
+        {
+          "INDEX_NAME": "uq_session",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "period_no",
+          "SEQ_IN_INDEX": 3
+        }
+      ],
+      "foreignKeys": [
+        {
+          "CONSTRAINT_NAME": "class_sessions_ibfk_1",
+          "COLUMN_NAME": "subject_id",
+          "REFERENCED_TABLE_NAME": "subjects",
+          "REFERENCED_COLUMN_NAME": "id",
+          "DELETE_RULE": "CASCADE",
+          "UPDATE_RULE": "NO ACTION"
+        }
+      ],
+      "checks": [
+        {
+          "CONSTRAINT_NAME": "chk_period",
+          "CHECK_CLAUSE": "(`period_no` between 1 and 12)"
+        }
+      ]
+    },
+    {
+      "name": "attendance",
+      "engine": "InnoDB",
+      "columns": [
+        {
+          "COLUMN_NAME": "id",
+          "COLUMN_TYPE": "int",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "auto_increment",
+          "ORDINAL_POSITION": 1
+        },
+        {
+          "COLUMN_NAME": "session_id",
+          "COLUMN_TYPE": "int",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 2
+        },
+        {
+          "COLUMN_NAME": "student_id",
+          "COLUMN_TYPE": "int",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 3
+        },
+        {
+          "COLUMN_NAME": "status",
+          "COLUMN_TYPE": "enum('Present','Absent')",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "EXTRA": "",
+          "ORDINAL_POSITION": 4
+        }
+      ],
+      "indexes": [
+        {
+          "INDEX_NAME": "idx_attendance_student",
+          "NON_UNIQUE": 1,
+          "COLUMN_NAME": "student_id",
+          "SEQ_IN_INDEX": 1
+        },
+        {
+          "INDEX_NAME": "PRIMARY",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "id",
+          "SEQ_IN_INDEX": 1
+        },
+        {
+          "INDEX_NAME": "uq_attendance",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "session_id",
+          "SEQ_IN_INDEX": 1
+        },
+        {
+          "INDEX_NAME": "uq_attendance",
+          "NON_UNIQUE": 0,
+          "COLUMN_NAME": "student_id",
+          "SEQ_IN_INDEX": 2
+        }
+      ],
+      "foreignKeys": [
+        {
+          "CONSTRAINT_NAME": "attendance_ibfk_1",
+          "COLUMN_NAME": "session_id",
+          "REFERENCED_TABLE_NAME": "class_sessions",
+          "REFERENCED_COLUMN_NAME": "id",
+          "DELETE_RULE": "CASCADE",
+          "UPDATE_RULE": "NO ACTION"
+        },
+        {
+          "CONSTRAINT_NAME": "attendance_ibfk_2",
+          "COLUMN_NAME": "student_id",
+          "REFERENCED_TABLE_NAME": "students",
+          "REFERENCED_COLUMN_NAME": "id",
+          "DELETE_RULE": "CASCADE",
+          "UPDATE_RULE": "NO ACTION"
+        }
+      ],
+      "checks": []
+    }
+  ]
+}

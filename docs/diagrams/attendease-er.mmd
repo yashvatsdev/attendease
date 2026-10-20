@@ -1,0 +1,35 @@
+erDiagram
+    direction TB
+    students {
+        INT id PK "NOT NULL; AUTO_INCREMENT"
+        VARCHAR(20) roll_no UK "NOT NULL"
+        VARCHAR(100) name "NOT NULL"
+        VARCHAR(150) email UK "NULL allowed"
+        TIMESTAMP created_at "NOT NULL; DEFAULT CURRENT_TIMESTAMP"
+    }
+    subjects {
+        INT id PK "NOT NULL; AUTO_INCREMENT"
+        VARCHAR(20) code UK "NOT NULL"
+        VARCHAR(100) name "NOT NULL"
+    }
+    enrollments {
+        INT student_id PK, FK "NOT NULL"
+        INT subject_id PK, FK "NOT NULL"
+    }
+    class_sessions {
+        INT id PK "NOT NULL; AUTO_INCREMENT"
+        INT subject_id FK "NOT NULL"
+        DATE session_date "NOT NULL"
+        INT period_no "NOT NULL"
+    }
+    attendance {
+        INT id PK "NOT NULL; AUTO_INCREMENT"
+        INT session_id FK "NOT NULL"
+        INT student_id FK "NOT NULL"
+        ENUM status "NOT NULL; Present | Absent"
+    }
+    students ||--o{ enrollments : "has enrollments"
+    subjects ||--o{ enrollments : "has enrollments"
+    subjects ||..o{ class_sessions : "schedules"
+    class_sessions ||..o{ attendance : "has records"
+    students ||..o{ attendance : "has attendance"
